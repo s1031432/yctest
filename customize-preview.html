@@ -5,8 +5,9 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cropper.js</title>
-  <script src="https://s1031432.github.io/goldenyears/js/jquery.min.js"></script>
-  <link rel="stylesheet" href="../css/cropper.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://s1031432.github.io/yctest/js/getDateTime.js"></script>
+  <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
   <style>
     .container {
       margin: 20px auto;
@@ -54,7 +55,7 @@
           <i></i> Step.1 點我上傳
         </label>
         <!-- 2022/06/16 -->
-        <img id="image" src="../img/picture.jpg" alt="Picture">
+        <img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture">
       </div>
       <div class="col col-3">
         <div class="preview"></div>
@@ -70,9 +71,91 @@
       <button id="ok">OK</button>
     </div>
   </div>
-  <script src="../js/cropper.js"></script>
+  <script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
   <!-- 2022/06/16 Start -->
   <script>
+
+    function canvas_draw(){
+      var width_crop = 331,
+        height_crop = 413, 
+        each_width = 360,
+        each_height = 600;
+      $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>`);
+      var ctx = document.getElementById('canvas').getContext('2d');
+      var img = new Image();
+      img.onload = function () {
+        ctx.setLineDash([3,4]);
+        ctx.lineWidth = 2;
+        randomColor = ['#f36', '#f63', '#3f6', '#6f3', '#36f', '#63f'];
+        ctx.strokeStyle = randomColor[parseInt(Math.random()*7)];
+        for(var i=0;i<5;i++){
+            ctx.drawImage(img, i*each_width, 0);
+            ctx.drawImage(img, i*each_width, 1200-height_crop);
+        }
+        for(var i=0;i<5;i++){
+            // left line
+            // first row
+            ctx.beginPath();
+            ctx.moveTo(each_width*i-2, 0);
+            ctx.lineTo(each_width*i-2, height_crop+2);
+            ctx.stroke();
+            // second row
+            ctx.beginPath();
+            ctx.moveTo(each_width*i-2, 1200);
+            ctx.lineTo(each_width*i-2, 1200-height_crop-2);
+            ctx.stroke();
+            // right line
+            // first row
+            ctx.beginPath();
+            ctx.moveTo(each_width*i+width_crop+2, 0);
+            ctx.lineTo(each_width*i+width_crop+2, height_crop+2);
+            ctx.stroke();
+            // second row
+            ctx.beginPath();
+            ctx.moveTo(each_width*i+width_crop+2, 1200);
+            ctx.lineTo(each_width*i+width_crop+2, 1200-height_crop-2);
+            ctx.stroke();
+        }
+        // draw two horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, height_crop+2);
+        ctx.lineTo(1800, height_crop+2);
+        ctx.stroke()
+        ctx.beginPath();
+        ctx.moveTo(0, 1200-height_crop-2);
+        ctx.lineTo(1800, 1200-height_crop-2);
+        ctx.stroke();
+
+        ctx.setLineDash([6, 12]);
+        ctx.strokeStyle = "#EEE";
+        ctx.lineWidth = 6;
+        for(var i=-50;i<100;i++){
+            ctx.beginPath();
+            ctx.moveTo(i * 27.8, 1200 - height_crop - 6);
+            ctx.lineTo(1200 - height_crop + i * 27.8, height_crop + 6);
+            ctx.stroke();
+        }
+      };
+      img.src = image.src;
+      img.setAttribute("crossOrigin",'Anonymous');
+      
+      var logo = new Image();
+      logo.src = "https://s1031432.github.io/goldenyears/img/logo.png";
+      logo.setAttribute("crossOrigin",'Anonymous');
+      logo.onload = () => {
+          console.log("Hi");
+          ctx.drawImage(logo, 840, 550);
+          // let img replace canvas
+          var saveHref = document.getElementById("save_href");
+          var img = document.getElementById("save_img");
+          var fileName = 'GoldenYears_'+getDateTime(new Date());
+          $("#save_href").attr('download', fileName);
+          var tempSrc = canvas.toDataURL("image/png");
+          saveHref.href=tempSrc;
+          img.src=tempSrc;
+          // $("canvas").hide();
+      }
+    }
     function each(arr, callback) {
       var length = arr.length;
       var i;
@@ -156,6 +239,7 @@
                 // });
                 image.src = e.target.result;
                 reload();
+                canvas_draw();
               }
           };
           reader.readAsDataURL(file);
