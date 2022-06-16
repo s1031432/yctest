@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cropper.js</title>
+  <script src="https://s1031432.github.io/goldenyears/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../css/cropper.css">
+  <style>
+    .container {
+      margin: 20px auto;
+      max-width: 960px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .row,
+    .preview {
+      overflow: hidden;
+    }
+
+    .col {
+      float: left;
+    }
+
+    .col-6 {
+      width: 50%;
+    }
+
+    .col-3 {
+      width: 25%;
+    }
+
+    .col-2 {
+      width: 16.7%;
+    }
+
+    .col-1 {
+      width: 8.3%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="text-align:center;">
+    <h1>好時有影 GoldenYears 自助裁切系統</h1>
+    <div class="row">
+      <div class="col col-6">
+        <!-- 2022/06/16 -->
+        <label class="btn btn-info">
+          <input id="upload_img" style="display:none;" type="file" accept="image/*">
+          <i></i> Step.1 點我上傳
+        </label>
+        <!-- 2022/06/16 -->
+        <img id="image" src="../img/picture.jpg" alt="Picture">
+      </div>
+      <div class="col col-3">
+        <div class="preview"></div>
+      </div>
+      <div class="col col-2">
+        <div class="preview"></div>
+      </div>
+      <div class="col col-1">
+        <div class="preview"></div>
+      </div>
+    </div>
+    <div id="yc">
+      <button id="ok">OK</button>
+    </div>
+  </div>
+  <script src="../js/cropper.js"></script>
+  <!-- 2022/06/16 Start -->
+  <script>
+    function each(arr, callback) {
+      var length = arr.length;
+      var i;
+
+      for (i = 0; i < length; i++) {
+        callback.call(arr, arr[i], i, arr);
+      }
+
+      return arr;
+    }
+    function reload(){
+      var image = document.querySelector('#image');
+      var previews = document.querySelectorAll('.preview');
+      var previewReady = false;
+      var cropper = new Cropper(image, {
+        // width / height
+        aspectRatio: 331 / 413,
+        ready: function () {
+          var clone = this.cloneNode();
+
+          clone.className = '';
+          clone.style.cssText = (
+            'display: block;' +
+            'width: 100%;' +
+            'min-width: 0;' +
+            'min-height: 0;' +
+            'max-width: none;' +
+            'max-height: none;'
+          );
+
+          each(previews, function (elem) {
+            elem.appendChild(clone.cloneNode());
+          });
+          previewReady = true;
+        },
+
+        crop: function (event) {
+          if (!previewReady) {
+            return;
+          }
+
+          var data = event.detail;
+          var cropper = this.cropper;
+          var imageData = cropper.getImageData();
+          var previewAspectRatio = data.width / data.height;
+
+          each(previews, function (elem) {
+            var previewImage = elem.getElementsByTagName('img').item(0);
+            var previewWidth = elem.offsetWidth;
+            var previewHeight = previewWidth / previewAspectRatio;
+            var imageScaledRatio = data.width / previewWidth;
+            console.log(data.width, "/", previewWidth)
+
+            elem.style.height = previewHeight + 'px';
+            previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+            previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+            previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+            previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+          });
+        },
+      });
+    }
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+          file = input.files[0];
+      } else {
+          return;
+      }
+      if (file.type.indexOf("image") == 0) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              console.log(e);
+              if(e.total > 30000000){
+                alert("錯誤：檔案太大！");
+              }
+              else{
+                // oldImgDataUrl = e.target.result;
+                // image.src = oldImgDataUrl;
+                // myCrop.croppie("bind", {
+                //     url: oldImgDataUrl
+                // });
+                image.src = e.target.result;
+                reload();
+              }
+          };
+          reader.readAsDataURL(file);
+      }
+      else {
+          alert("上傳的不是圖檔！");
+      }
+    }
+
+    $("#upload_img").on("change", function () {
+      readFile(this);
+    });
+
+    $("#ok").on("click", function(){
+      $("#yc").append('<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>');
+      var ctx = document.getElementById('canvas').getContext('2d');
+
+    });
+  </script>
+  <!-- 2022/06/16 End -->
+  
+</body>
+</html>
