@@ -67,8 +67,12 @@
         <div class="preview"></div>
       </div>
     </div>
+    <button type="button" id="button">Crop</button>
     <div id="yc">
-      <button id="ok">OK</button>
+      <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
+    </div>
+    <div id="crop" style="display:none;">
+      You can't see me.
     </div>
   </div>
   <script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
@@ -76,21 +80,23 @@
   <script>
 
     function canvas_draw(){
+      // inch1
       var width_crop = 331,
         height_crop = 413, 
         each_width = 360,
         each_height = 600;
+        
       $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>`);
       var ctx = document.getElementById('canvas').getContext('2d');
-      var img = new Image();
-      img.onload = function () {
+      var crop = document.getElementsByTagName('canvas')[1];
         ctx.setLineDash([3,4]);
         ctx.lineWidth = 2;
         randomColor = ['#f36', '#f63', '#3f6', '#6f3', '#36f', '#63f'];
         ctx.strokeStyle = randomColor[parseInt(Math.random()*7)];
         for(var i=0;i<5;i++){
-            ctx.drawImage(img, i*each_width, 0);
-            ctx.drawImage(img, i*each_width, 1200-height_crop);
+          console.log(i*each_width, width_crop)
+          ctx.drawImage(crop, i*each_width, 0, width_crop, height_crop);
+          ctx.drawImage(crop, i*each_width, 1200-height_crop, width_crop, height_crop);
         }
         for(var i=0;i<5;i++){
             // left line
@@ -135,35 +141,30 @@
             ctx.lineTo(1200 - height_crop + i * 27.8, height_crop + 6);
             ctx.stroke();
         }
-      };
-      img.src = image.src;
-      img.setAttribute("crossOrigin",'Anonymous');
+      // };
       
       var logo = new Image();
       logo.src = "https://s1031432.github.io/goldenyears/img/logo.png";
       logo.setAttribute("crossOrigin",'Anonymous');
       logo.onload = () => {
-          console.log("Hi");
           ctx.drawImage(logo, 840, 550);
           // let img replace canvas
           var saveHref = document.getElementById("save_href");
-          var img = document.getElementById("save_img");
+          var save_img = document.getElementById("save_img");
           var fileName = 'GoldenYears_'+getDateTime(new Date());
           $("#save_href").attr('download', fileName);
           var tempSrc = canvas.toDataURL("image/png");
           saveHref.href=tempSrc;
-          img.src=tempSrc;
+          save_img.src=tempSrc;
           // $("canvas").hide();
       }
     }
     function each(arr, callback) {
       var length = arr.length;
       var i;
-
       for (i = 0; i < length; i++) {
         callback.call(arr, arr[i], i, arr);
       }
-
       return arr;
     }
     function reload(){
@@ -185,9 +186,11 @@
             'max-width: none;' +
             'max-height: none;'
           );
-
           each(previews, function (elem) {
             elem.appendChild(clone.cloneNode());
+            $(".preview > img").eq(0).attr("id", "image0");
+            $(".preview > img").eq(1).attr("id", "image1");
+            $(".preview > img").eq(2).attr("id", "image2");
           });
           previewReady = true;
         },
@@ -207,7 +210,6 @@
             var previewWidth = elem.offsetWidth;
             var previewHeight = previewWidth / previewAspectRatio;
             var imageScaledRatio = data.width / previewWidth;
-            console.log(data.width, "/", previewWidth)
 
             elem.style.height = previewHeight + 'px';
             previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
@@ -215,8 +217,14 @@
             previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
             previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
           });
+          
         },
       });
+      button.onclick = function () {
+        crop.innerHTML = '';
+        crop.appendChild(cropper.getCroppedCanvas());
+        canvas_draw();
+      };
     }
     function readFile(input) {
       if (input.files && input.files[0]) {
@@ -239,7 +247,7 @@
                 // });
                 image.src = e.target.result;
                 reload();
-                canvas_draw();
+                
               }
           };
           reader.readAsDataURL(file);
@@ -251,13 +259,7 @@
 
     $("#upload_img").on("change", function () {
       readFile(this);
-    });
-
-    $("#ok").on("click", function(){
-      $("#yc").append('<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>');
-      var ctx = document.getElementById('canvas').getContext('2d');
-
-    });
+    });    
   </script>
   <!-- 2022/06/16 End -->
   

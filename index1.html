@@ -1,0 +1,166 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cropper.js</title>
+    <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
+    <style>
+        .container {
+            margin: 20px auto;
+            max-width: 960px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .row,
+        .preview {
+            overflow: hidden;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-2 {
+            width: 16.7%;
+        }
+
+        .col-1 {
+            width: 8.3%;
+        }
+    </style>
+    <style shopback-extension-v6-7-1="" data-styled-version="4.2.0"></style>
+    <link id="avast_os_ext_custom_font"
+        href="chrome-extension://mbckjcfnjmoiinpgddefodcighgikkgn/common/ui/fonts/fonts.css" rel="stylesheet"
+        type="text/css">
+</head>
+
+<body style="">
+    <div class="container">
+        <h1>Customize preview for Cropper</h1>
+        <div class="row">
+            <div class="col col-6">
+                <img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture" class="cropper-hidden">
+                <div class="cropper-container cropper-bg" touch-action="none" style="width: 480px; height: 274px;">
+                    <div class="cropper-wrap-box">
+                        <div class="cropper-canvas" style="width: 480px; height: 270px; transform: translateY(2px);">
+                            <img src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture"
+                                class="cropper-hide" style="width: 480px; height: 270px; transform: none;"></div>
+                    </div>
+                    <div class="cropper-drag-box cropper-crop cropper-modal" data-cropper-action="crop"></div>
+                    <div class="cropper-crop-box"
+                        style="width: 384px; height: 216px; transform: translateX(48px) translateY(29px);"><span
+                            class="cropper-view-box"><img
+                                src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture"
+                                style="width: 480px; height: 270px; transform: translateX(-48px) translateY(-27px);"></span><span
+                            class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span
+                            class="cropper-center"></span><span class="cropper-face cropper-move"
+                            data-cropper-action="all"></span><span class="cropper-line line-e"
+                            data-cropper-action="e"></span><span class="cropper-line line-n"
+                            data-cropper-action="n"></span><span class="cropper-line line-w"
+                            data-cropper-action="w"></span><span class="cropper-line line-s"
+                            data-cropper-action="s"></span><span class="cropper-point point-e"
+                            data-cropper-action="e"></span><span class="cropper-point point-n"
+                            data-cropper-action="n"></span><span class="cropper-point point-w"
+                            data-cropper-action="w"></span><span class="cropper-point point-s"
+                            data-cropper-action="s"></span><span class="cropper-point point-ne"
+                            data-cropper-action="ne"></span><span class="cropper-point point-nw"
+                            data-cropper-action="nw"></span><span class="cropper-point point-sw"
+                            data-cropper-action="sw"></span><span class="cropper-point point-se"
+                            data-cropper-action="se"></span></div>
+                </div>
+            </div>
+            <div class="col col-3">
+                <div class="preview"><img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture" class=""
+                        style="display: block; width: 100%; min-width: 0px; min-height: 0px; max-width: none; max-height: none;">
+                </div>
+            </div>
+            <div class="col col-2">
+                <div class="preview"><img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture" class=""
+                        style="display: block; width: 100%; min-width: 0px; min-height: 0px; max-width: none; max-height: none;">
+                </div>
+            </div>
+            <div class="col col-1">
+                <div class="preview"><img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture" class=""
+                        style="display: block; width: 100%; min-width: 0px; min-height: 0px; max-width: none; max-height: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
+    <script>
+        function each(arr, callback) {
+            var length = arr.length;
+            var i;
+
+            for (i = 0; i < length; i++) {
+                callback.call(arr, arr[i], i, arr);
+            }
+
+            return arr;
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            var image = document.querySelector('#image');
+            var previews = document.querySelectorAll('.preview');
+            var previewReady = false;
+            var cropper = new Cropper(image, {
+                ready: function () {
+                    var clone = this.cloneNode();
+
+                    clone.className = '';
+                    clone.style.cssText = (
+                        'display: block;' +
+                        'width: 100%;' +
+                        'min-width: 0;' +
+                        'min-height: 0;' +
+                        'max-width: none;' +
+                        'max-height: none;'
+                    );
+
+                    each(previews, function (elem) {
+                        elem.appendChild(clone.cloneNode());
+                    });
+                    previewReady = true;
+                },
+
+                crop: function (event) {
+                    if (!previewReady) {
+                        return;
+                    }
+
+                    var data = event.detail;
+                    var cropper = this.cropper;
+                    var imageData = cropper.getImageData();
+                    var previewAspectRatio = data.width / data.height;
+
+                    each(previews, function (elem) {
+                        var previewImage = elem.getElementsByTagName('img').item(0);
+                        var previewWidth = elem.offsetWidth;
+                        var previewHeight = previewWidth / previewAspectRatio;
+                        var imageScaledRatio = data.width / previewWidth;
+
+                        elem.style.height = previewHeight + 'px';
+                        previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                        previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                        previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                        previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+                    });
+                },
+            });
+        });
+    </script>
+</body>
