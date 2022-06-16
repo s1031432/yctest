@@ -23,22 +23,21 @@
 </head>
 <body>
   <div class="container" style="text-align:center;">
-    <h1>好時有影１吋大頭照自助裁切</h1>
     <div id="crop_div">
       <!-- 2022/06/16 -->
-      <label class="btn btn-info">
+      <label class="btn btn-primary">
         <input id="upload_img" style="display:none;" type="file" accept="image/*">
         點我上傳照片
       </label>
       <!-- 2022/06/16 -->
-      <img id="image" src="https://s1031432.github.io/yctest/img/picture.jpg" alt="Picture">
+      <img id="image" src="" alt="Picture" style="display:none;">
       <!-- <p>Maximum Width: 640, Maximum Height: 320, Minimum Width: 320, Minimum Height: 160</p>
       <p>Data: <span id="data"></span></p>
       <h3>Result</h3> -->
     </div>
-    <p>
-      <button type="button" id="button">Crop</button>
-    </p>
+    <div>
+      <button id="button" class="btn btn-primary" type="button" style="margin:0 auto;display:none;">完成裁切</button>
+    </div>
     <div id="yc">
       <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
     </div>
@@ -136,7 +135,8 @@
       var minCroppedWidth = 331;
       var minCroppedHeight = 413;
       var maxCroppedWidth = $("img").eq(2).css("width");
-      var maxCroppedHeight = $("img").eq(2).css("height");;
+      var maxCroppedHeight = $("img").eq(2).css("height");
+      console.log(maxCroppedWidth, maxCroppedHeight)
       var cropper = new Cropper(image, {
         aspectRatio: 331 / 413,
         viewMode: 3,
@@ -163,7 +163,7 @@
             });
           }
 
-          data.textContent = JSON.stringify(cropper.getData(true));
+          // data.textContent = JSON.stringify(cropper.getData(true));
         },
       });
 
@@ -203,6 +203,8 @@
 
     $("#upload_img").on("change", function () {
       readFile(this);
+      $("#button").css("display", "block");
+      $("#image").css("display", "block");
     });
 
     $("#ok").on("click", function(){
