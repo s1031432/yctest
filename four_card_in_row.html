@@ -4,9 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="https://s1031432.github.io/yctest/js/getDateTime.js"></script>
-        <!-- <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css"> -->
+
         <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
-        <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/index.css">
+        <!-- <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/index.css"> -->
+        <link rel="stylesheet" href="../css/index.css">
         <link href="https://s1031432.github.io/yctest/css/bootstrap.min.css" rel='stylesheet'>
     </head>
     <body>
@@ -20,14 +21,14 @@
                     <div class="photo">
                         <img src="https://s1031432.github.io/yctest/img/inch2_head.png" width="100%">
                     </div>
-                    <div class="text" >
+                    <div class="text">
                         <table>
                             <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
                             <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch2_head" class="button" onclick="()=>{btn_choose_mode=`inch2_head`; $(`#upload_img`).click(); console.log(`YA`);}">
+                    <div id="inch2_head" class="button">
                         上傳照片
                     </div>
                 </div>
@@ -39,14 +40,14 @@
                     <div class="photo">
                         <img src="https://s1031432.github.io/yctest/img/inch2_body.png" width="100%">
                     </div>
-                    <div class="text" >
+                    <div class="text">
                         <table>
                             <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
                             <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch2_body" class="button" onclick="()=>{btn_choose_mode=`inch2_body`; $(`#upload_img`).click();}">
+                    <div id="inch2_body" class="button">
                         上傳照片
                     </div>
                 </div>
@@ -58,14 +59,14 @@
                     <div class="photo">
                         <img src="https://s1031432.github.io/yctest/img/inch1.png" width="100%">
                     </div>
-                    <div class="text" >
+                    <div class="text">
                         <table>
                             <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
                             <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印十張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch1" class="button" onclick="()=>{btn_choose_mode=`inch1`; $(`#upload_img`).click();}">
+                    <div id="inch1" class="button">
                         上傳照片
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印六張）</td></tr>
                         </table>
                     </div>
-                    <div id="usa" class="button" onclick="()=>{btn_choose_mode=`usa`; $(`#upload_img`).click();}">
+                    <div id="usa" class="button">
                         上傳照片
                     </div>
                 </div> 
@@ -92,13 +93,8 @@
         </div>
         <div class="container" style="text-align:center;">
             <div id="crop_div">
-                <!-- 2022/06/16 -->
                 <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
-                <!-- 2022/06/16 -->
                 <img id="image" src="" alt="Picture" style="display:none;" height="auto" width="100%">
-                <!-- <p>Maximum Width: 640, Maximum Height: 320, Minimum Width: 320, Minimum Height: 160</p>
-                <p>Data: <span id="data"></span></p>
-                <h3>Result</h3> -->
             </div>
             <div>
                 <button id="button" class="btn btn-primary" type="button" style="margin:0 auto; display:none;">完成裁切</button>

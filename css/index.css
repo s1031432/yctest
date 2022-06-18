@@ -102,7 +102,7 @@ td {
 .yt-card-width {
     width:25%;
 }
-@media (max-width: 768px){
+/* @media (max-width: 768px){
     .yt-card-width {
         width:50%;
     }
@@ -141,7 +141,7 @@ td {
         vertical-align: top;
         max-height:165px;
     }
-}
+} */
 
 .yt-card > .title {
     text-align:center;
