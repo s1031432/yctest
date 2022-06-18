@@ -123,6 +123,7 @@ td {
     }
 }
 @media (max-width: 500px){
+
     .yt-row {
         width:1280px;
         max-width: 1280px;
