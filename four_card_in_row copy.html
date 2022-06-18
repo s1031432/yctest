@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="https://s1031432.github.io/yctest/js/getDateTime.js"></script>
+        <!-- <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css"> -->
         <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
         <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/index.css">
         <link href="https://s1031432.github.io/yctest/css/bootstrap.min.css" rel='stylesheet'>
@@ -48,8 +49,6 @@
                     width:100%;
                     max-width: 1280px;
                     padding: 0 24px;
-                    /* display: flex; */
-                    /* justify-content: center; */
                     margin: 0 auto;
                     outline: 0;
                     box-sizing: border-box;
@@ -70,8 +69,6 @@
                     width:100%;
                     max-width: 1280px;
                     padding: 0 6px;
-                    /* display: flex; */
-                    /* justify-content: center; */
                     margin: 0 auto;
                     outline: 0;
                     box-sizing: border-box;
@@ -135,7 +132,7 @@
                         <h3>２吋大頭照產生器</h3>
                     </div>
                     <div class="photo">
-                        <img src="https://s1031432.github.io/goldenyears/img/inch2_head.png" width="100%">
+                        <img src="https://s1031432.github.io/yctest/img/inch2_head.png" width="100%">
                     </div>
                     <div class="text" >
                         <table>
@@ -154,7 +151,7 @@
                         <h3>２吋半身照產生器</h3>
                     </div>
                     <div class="photo">
-                        <img src="https://s1031432.github.io/goldenyears/img/inch2_body.png" width="100%">
+                        <img src="https://s1031432.github.io/yctest/img/inch2_body.png" width="100%">
                     </div>
                     <div class="text" >
                         <table>
@@ -173,7 +170,7 @@
                         <h3>１吋半身照產生器</h3>
                     </div>
                     <div class="photo">
-                        <img src="https://s1031432.github.io/goldenyears/img/inch1.png" width="100%">
+                        <img src="https://s1031432.github.io/yctest/img/inch1.png" width="100%">
                     </div>
                     <div class="text" >
                         <table>
@@ -192,7 +189,7 @@
                         <h3>美國簽證產生器</h3>
                     </div>
                     <div class="photo">
-                        <img src="https://s1031432.github.io/goldenyears/img/usa.png" width="100%">
+                        <img src="https://s1031432.github.io/yctest/img/usa.png" width="100%">
                     </div>
                     <div class="text" >
                         <table>
@@ -212,13 +209,13 @@
                 <!-- 2022/06/16 -->
                 <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
                 <!-- 2022/06/16 -->
-                <img id="image" src="" alt="Picture" style="display:none;">
+                <img id="image" src="" alt="Picture" style="display:none;" height="auto" width="100%">
                 <!-- <p>Maximum Width: 640, Maximum Height: 320, Minimum Width: 320, Minimum Height: 160</p>
                 <p>Data: <span id="data"></span></p>
                 <h3>Result</h3> -->
             </div>
             <div>
-                <button id="button" class="btn btn-primary" type="button" style="margin:0 auto;display:none;">完成裁切</button>
+                <button id="button" class="btn btn-primary" type="button" style="margin:0 auto; display:none;">完成裁切</button>
             </div>
             <div id="yc">
                 <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
@@ -341,7 +338,7 @@
         // };
 
         var logo = new Image();
-        logo.src = "https://s1031432.github.io/goldenyears/img/logo.png";
+        logo.src = "https://s1031432.github.io/yctest/img/logo.png";
         logo.setAttribute("crossOrigin", 'Anonymous');
         logo.onload = () => {
             if (btn_choose_mode != "usa") {
@@ -367,34 +364,17 @@
         var minCroppedHeight = mode[btn_choose_mode].height;
         var maxCroppedWidth = $("img").eq(2).css("width");
         var maxCroppedHeight = $("img").eq(2).css("height");
-        console.log(maxCroppedWidth, maxCroppedHeight)
         var cropper = new Cropper(image, {
             aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
             viewMode: 3,
-            zoomable: false,
 
+            responsive:false,
             data: {
-                width: (minCroppedWidth + maxCroppedWidth) / 4,
-                height: (minCroppedHeight + maxCroppedHeight) / 4,
-            },
-
-            crop: function (event) {
-                var width = event.detail.width;
-                var height = event.detail.height;
-
-                if (
-                    width < minCroppedWidth
-                    || height < minCroppedHeight
-                    || width > maxCroppedWidth
-                    || height > maxCroppedHeight
-                ) {
-                    cropper.setData({
-                        width: Math.max(minCroppedWidth, Math.min(maxCroppedWidth, width)),
-                        height: Math.max(minCroppedHeight, Math.min(maxCroppedHeight, height)),
-                    });
-                }
+                width: (minCroppedWidth + maxCroppedWidth)/4,
+                height: (minCroppedHeight + maxCroppedHeight)/4,
             },
         });
+        console.log(cropper.getContainerData())
         button.onclick = function () {
             crop.innerHTML = '';
             crop.appendChild(cropper.getCroppedCanvas());
@@ -403,6 +383,7 @@
             $("#button").remove();
         };
     };
+    
     function readFile(input) {
         if (input.files && input.files[0]) {
             file = input.files[0];
@@ -420,6 +401,7 @@
                     $(`.yt-row-container`).remove();
                     image.src = e.target.result;
                     reload();
+                    window.scrollTo(0, 0);
                 }
             };
             reader.readAsDataURL(file);

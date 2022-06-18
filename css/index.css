@@ -69,3 +69,115 @@ img {
     -o-transition: opacity .15s linear;
     transition: opacity .15s linear;
 }
+
+td {
+    min-width:32px;
+}
+.yt-row-container {
+    /* display: table-cell; */
+    vertical-align: middle;
+    width: 100%;
+}
+.yt-row {
+    width:100%;
+    max-width: 1280px;
+    padding: 0 48px;
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: 0 auto;
+    outline: 0;
+    box-sizing: border-box;
+    font-size: 0;
+}
+.yt-card {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 24px;
+    position: relative;
+    vertical-align: top;
+    font-size: 16px;
+    cursor: pointer;
+}
+.yt-card-width {
+    width:25%;
+}
+@media (max-width: 768px){
+    .yt-card-width {
+        width:50%;
+    }
+    .yt-row {
+        width:100%;
+        max-width: 1280px;
+        padding: 0 24px;
+        margin: 0 auto;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 0;
+    }
+    .yt-card > .photo {
+        margin-bottom:30px;
+        text-align:center;
+        vertical-align: top;
+        max-height:165px;
+    }
+}
+@media (max-width: 500px){
+    .yt-card-width {
+        width:100%;
+    }
+    .yt-row {
+        width:100%;
+        max-width: 1280px;
+        padding: 0 6px;
+        margin: 0 auto;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 0;
+    }
+    .yt-card > .photo {
+        margin-bottom:60px;
+        text-align:center;
+        vertical-align: top;
+        max-height:165px;
+    }
+}
+
+.yt-card > .title {
+    text-align:center;
+    padding:14px 8px;
+}
+.yt-card > .photo {
+    text-align:center;
+    vertical-align: top;
+    max-height:165px;
+}
+.yt-card > .text {
+    padding: 14px 8px;
+    word-break: break-all;
+}
+.yt-card > .button {
+    padding: 4px;
+    text-align:center;
+    color: rgba(225,223,219,1);
+    background-color: rgba(48, 48, 51, 1);
+    min-height:28px;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    border-radius:4px;
+    cursor: pointer;
+    margin-top:5%;
+}
+.yt-card > .button:hover {
+    background-color: rgba(48, 48, 51, 0.9);
+    transition: all .15s linear;
+}
+.container {
+margin: 20px auto;
+max-width: 640px;
+}
+
+img {
+    max-width: 100%;
+}
