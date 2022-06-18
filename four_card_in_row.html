@@ -13,7 +13,7 @@
         <div class="yt-row-container">
             <div class="yt-row" tabindex="-1">
                 <!-- card1 -->
-                <div class="yt-card yt-card-width">
+                <div id="inch2_head" class="yt-card yt-card-width">
                     <div class="title">
                         <h3>２吋大頭照產生器</h3>
                     </div>
@@ -27,12 +27,12 @@
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch2_head" class="button">
+                    <div class="button">
                         上傳照片
                     </div>
                 </div>
                 <!-- card2 -->
-                <div class="yt-card yt-card-width">
+                <div id="inch2_body" class="yt-card yt-card-width">
                     <div class="title">
                         <h3>２吋半身照產生器</h3>
                     </div>
@@ -46,12 +46,12 @@
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch2_body" class="button">
+                    <div class="button">
                         上傳照片
                     </div>
                 </div>
                 <!-- card3 -->
-                <div class="yt-card yt-card-width">
+                <div id="inch1" class="yt-card yt-card-width">
                     <div class="title">
                         <h3>１吋半身照產生器</h3>
                     </div>
@@ -65,12 +65,12 @@
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印十張）</td></tr>
                         </table>
                     </div>
-                    <div id="inch1" class="button">
+                    <div class="button">
                         上傳照片
                     </div>
                 </div>
                 <!-- card4 -->
-                <div class="yt-card yt-card-width">
+                <div id="usa" class="yt-card yt-card-width">
                     <div class="title">
                         <h3>美國簽證產生器</h3>
                     </div>
@@ -84,7 +84,7 @@
                             <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印六張）</td></tr>
                         </table>
                     </div>
-                    <div id="usa" class="button">
+                    <div class="button">
                         上傳照片
                     </div>
                 </div> 
@@ -118,11 +118,14 @@
     $(".yt-card").on("mouseleave", () => {
         $(".yt-card").css("opacity", 1);
     });
-    $(".button").on("click", (e) => {
+    $(".yt-card").on("click", () => {
         $("#upload_img").click();
         btn_choose_mode = e.target.id;
         console.log(e.target.id);
     });
+    // $(".button").on("click", (e) => {
+        
+    // });
 </script>
 <script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
 <script>
