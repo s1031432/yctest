@@ -1237,8 +1237,8 @@
             addClass(cropper, CLASS_HIDDEN);
             removeClass(element, CLASS_HIDDEN);
             var containerData = {
-                width: Math.max(container.offsetWidth, minWidth >= 0 ? minWidth : MIN_CONTAINER_WIDTH),
-                height: Math.max(container.offsetHeight, minHeight >= 0 ? minHeight : MIN_CONTAINER_HEIGHT)
+                width: (Math.max(container.offsetWidth, minWidth >= 0 ? minWidth : MIN_CONTAINER_WIDTH))*0.8,
+                height: (Math.max(container.offsetHeight, minHeight >= 0 ? minHeight : MIN_CONTAINER_HEIGHT))*0.8
             };
             this.containerData = containerData;
             setStyle(cropper, {
@@ -1386,8 +1386,8 @@
 
             if (transformed) {
                 var _getRotatedSizes = getRotatedSizes({
-                    width: imageData.naturalWidth * Math.abs(imageData.scaleX || 1),
-                    height: imageData.naturalHeight * Math.abs(imageData.scaleY || 1),
+                    width: imageData.naturalWidth * Math.abs(imageData.scaleX || 1)*0.8,
+                    height: imageData.naturalHeight * Math.abs(imageData.scaleY || 1)*0.8,
                     degree: imageData.rotate || 0
                 }),
                     naturalWidth = _getRotatedSizes.width,
@@ -1436,8 +1436,11 @@
         renderImage: function renderImage(changed) {
             var canvasData = this.canvasData,
                 imageData = this.imageData;
+            // yt
             var width = imageData.naturalWidth * (canvasData.width / canvasData.naturalWidth);
             var height = imageData.naturalHeight * (canvasData.height / canvasData.naturalHeight);
+            // var width = imageData.naturalWidth * (canvasData.width / canvasData.naturalWidth)*0.8;
+            // var height = imageData.naturalHeight * (canvasData.height / canvasData.naturalHeight)*0.8;
             assign(imageData, {
                 width: width,
                 height: height,
@@ -1461,9 +1464,15 @@
                 canvasData = this.canvasData;
             var aspectRatio = options.aspectRatio || options.initialAspectRatio;
             var autoCropArea = Number(options.autoCropArea) || 0.8;
+            // yt
+            // var cropBoxData = {
+            //     width: canvasData.width,
+            //     height: canvasData.height
+            // };
+
             var cropBoxData = {
-                width: canvasData.width,
-                height: canvasData.height
+                width: canvasData.width*0.8,
+                height: canvasData.height*0.8
             };
 
             if (aspectRatio) {
