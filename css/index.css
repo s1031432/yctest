@@ -126,7 +126,7 @@ td {
     .yt-row {
         width:1280px;
         max-width: 1280px;
-        padding: 0 48px;
+        padding: 0 6px;
         /* display: flex; */
         /* justify-content: center; */
         margin: 0 auto;
