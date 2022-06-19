@@ -70,14 +70,14 @@
                     </div>
                 </div>
                 <!-- card4 -->
-                <div id="usa" class="yt-card yt-card-width">
+                <div id="usa" class="yt-card yt-card-width" z-index="99">
                     <div class="title">
                         <h3>美國簽證產生器</h3>
                     </div>
                     <div class="photo">
                         <img src="https://s1031432.github.io/yctest/img/usa.png" width="100%">
                     </div>
-                    <div class="text" >
+                    <div class="text">
                         <table>
                             <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
                             <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
@@ -118,10 +118,31 @@
     $(".yt-card").on("mouseleave", () => {
         $(".yt-card").css("opacity", 1);
     });
-    $(".yt-card").on("click", () => {
+    $(".yt-card").on("click", (e) => {
+        var targetId = "";
+        if(e.target.id.length){
+            targetId = e.target.id;
+        }
+        else if(e.target.parentElement.id){
+            targetId = e.target.parentElement.id;
+        }
+        else if(e.target.parentElement.parentElement.id){
+            targetId = e.target.parentElement.parentElement.id;
+        }
+        else if(e.target.parentElement.parentElement.parentElement.id){
+            targetId = e.target.parentElement.parentElement.parentElement.id;
+        }
+        else if(e.target.parentElement.parentElement.parentElement.parentElement.id){
+            targetId = e.target.parentElement.parentElement.parentElement.parentElement.id;
+        }
+        else if(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id){
+            targetId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+        }
+        console.log(targetId.length);
+        btn_choose_mode = targetId;
         $("#upload_img").click();
-        btn_choose_mode = e.target.id;
-        console.log(e.target.id);
+        
+        
     });
     // $(".button").on("click", (e) => {
         
