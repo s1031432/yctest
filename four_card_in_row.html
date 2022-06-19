@@ -185,7 +185,7 @@
         var each_width = mode[btn_choose_mode].each_width;
         var each_height = mode[btn_choose_mode].each_height;
 
-        $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>`);
+        $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a><p>（點擊照片即可下載）</p>`);
         var ctx = document.getElementById('canvas').getContext('2d');
         var crop = document.getElementsByTagName('canvas')[1];
         ctx.setLineDash([3, 4]);
