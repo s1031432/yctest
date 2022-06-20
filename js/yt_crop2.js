@@ -146,7 +146,7 @@ function reload() {
     var container = {};
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
-        viewMode: 3,
+        viewMode: 0,
         dragMode: 'move',
         autoCropArea: 1,
         restore: false,
@@ -174,13 +174,6 @@ function reload() {
     };
     rotate.onclick = function () {
         cropper.rotate(90);
-        if(!rotate_count%2){
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-        }
     }
     big.onclick = function(){
         cropper.zoom(0.1);

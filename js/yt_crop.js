@@ -147,9 +147,10 @@ function reload() {
     var maxCroppedHeight = $("img").eq(2).css("height");
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
-        viewMode: 3,
+        viewMode: 0,
         // dragMode: "none",
-        // cropBoxResizable:false,
+        dragMode: 'move',
+        cropBoxResizable:false,
         responsive:false,
         data: {
             width: (minCroppedWidth + maxCroppedWidth)/4,
@@ -167,13 +168,6 @@ function reload() {
     };
     rotate.onclick = function () {
         cropper.rotate(90);
-        if(!rotate_count%2){
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-            cropper.zoom(-0.1);
-        }
     }
     big.onclick = function(){
         cropper.zoom(0.1);
