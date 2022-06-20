@@ -158,7 +158,7 @@ function reload() {
         // cropBoxMovable: false,
         cropBoxResizable: false,
         crop: function(e){
-            console.log(cropper.getContainerData().width)
+            add_line();
         }
     });
     
@@ -172,6 +172,7 @@ function reload() {
         // $("#crop_div").remove();
         // $("#button").remove();
         $("#yc").append("（點擊圖片即可下載）");
+
     };
     rotate.onclick = function () {
         cropper.rotate(90);
