@@ -166,6 +166,7 @@ function reload() {
         $(".cropper-container").remove();
         $("#button").remove();
         $(".step2").css("display", "none");
+        $("#yc").append("（點擊圖片即可下載）");
     };
     rotate.onclick = function () {
         cropper.rotate(90);
