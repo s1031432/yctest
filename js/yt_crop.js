@@ -148,7 +148,7 @@ function reload() {
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
         viewMode: 3,
-        dragMode: "none",
+        // dragMode: "none",
         // cropBoxResizable:false,
         responsive:false,
         data: {
