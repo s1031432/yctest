@@ -92,7 +92,7 @@ td {
 .yt-card {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    display: inline-block;
+    /* display: inline-block; */
     padding: 24px;
     position: relative;
     vertical-align: top;
@@ -178,7 +178,7 @@ td {
     justify-content : center;
     border-radius:4px;
     cursor: pointer;
-    margin-top:5%;
+    margin-top: 10%;
 }
 .yt-card > .button:hover {
     background-color: rgba(48, 48, 51, 0.9);

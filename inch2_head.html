@@ -1,0 +1,307 @@
+<html>
+    <head>
+        <title>yc</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://s1031432.github.io/yctest/js/getDateTime.js"></script>
+
+        <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
+        <!-- <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/index.css"> -->
+        <link rel="stylesheet" href="../css/index.css">
+        <link href="https://s1031432.github.io/yctest/css/bootstrap.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <div class="yt-row-container">
+            <div class="yt-row" tabindex="-1">
+                <!-- card1 -->
+                <div class="yt-card yt-card-width">
+                    <div class="title">
+                        <h3>點我產生２吋大頭照</h3>
+                    </div>
+                    <div class="photo">
+                        <img src="https://s1031432.github.io/yctest/img/inch2_head.png" width="100%">
+                    </div>
+                    <div class="text">
+                        <table>
+                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
+                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
+                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
+                        </table>
+                    </div>
+                    <div id="inch2_head" class="button">
+                        點我上傳照片
+                    </div>
+                </div>
+                <!-- card2 -->
+                <!-- <div class="yt-card yt-card-width" style="margin:0 auto;">
+                    <div class="title">
+                        <h3>點我產生２吋半身照</h3>
+                    </div>
+                    <div class="photo">
+                        <img src="https://s1031432.github.io/yctest/img/inch2_body.png" width="100%">
+                    </div>
+                    <div class="text">
+                        <table>
+                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
+                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
+                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
+                        </table>
+                    </div>
+                    <div id="inch2_body" class="button">
+                        點我上傳照片
+                    </div>
+                </div> -->
+                <!-- card3 -->
+                <!-- <div class="yt-card yt-card-width" style="margin:0 auto;">
+                    <div class="title">
+                        <h3>點我產生１吋半身照</h3>
+                    </div>
+                    <div class="photo">
+                        <img src="https://s1031432.github.io/yctest/img/inch1.png" width="100%">
+                    </div>
+                    <div class="text">
+                        <table>
+                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
+                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
+                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印十張）</td></tr>
+                        </table>
+                    </div>
+                    <div id="inch1" class="button">
+                        點我上傳照片
+                    </div>
+                </div> -->
+                <!-- card4 -->
+                <!-- <div class="yt-card yt-card-width">
+                    <div class="title">
+                        <h3>美國簽證產生器</h3>
+                    </div>
+                    <div class="photo">
+                        <img src="https://s1031432.github.io/yctest/img/usa.png" width="100%">
+                    </div>
+                    <div class="text" >
+                        <table>
+                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
+                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
+                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印六張）</td></tr>
+                        </table>
+                    </div>
+                    <div id="usa" class="button">
+                        上傳照片
+                    </div>
+                </div>  -->
+            </div>
+        </div>
+        <div class="container" style="text-align:center;">
+            <div id="crop_div">
+                <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
+                <img id="image" src="" alt="Picture" style="display:none;" height="auto" width="100%">
+            </div>
+            <div>
+                <button id="button" class="btn btn-primary" type="button" style="margin:0 auto; display:none;">完成裁切</button>
+            </div>
+            <div id="yc">
+                <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
+            </div>
+            <div id="crop" style="display:none;">
+                You can't see me.
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    // four card hover
+    $(".yt-card").css("transition", "all .15s linear");
+    $(".yt-card").on("mouseenter", (t) => {
+        $(".yt-card").css("opacity", 0.5);
+        $(this).css("opacity", 1);
+        t.currentTarget.style.opacity = 0.95;
+    });
+    $(".yt-card").on("mouseleave", () => {
+        $(".yt-card").css("opacity", 1);
+    });
+    $(".button").on("click", (e) => {
+        $("#upload_img").click();
+        btn_choose_mode = e.target.id;
+        console.log(e.target.id);
+    });
+</script>
+<script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
+<script>
+    var mode = {
+        "inch1": {
+            "width": 331,
+            "height": 413,
+            "each_width": 360,
+            "each_height": 600
+        },
+        "inch2_body": {
+            "width": 496,
+            "height": 555,
+            "each_width": 600,
+            "each_height": 600
+        },
+        "inch2_head": {
+            "width": 413,
+            "height": 532,
+            "each_width": 450,
+            "each_height": 600
+        },
+        "usa": {
+            "width": 591,
+            "height": 591,
+            "each_width": 600,
+            "each_height": 600
+        }
+    }
+    // inch1 || inch2_body || inch2_head || usa
+    var btn_choose_mode = "";
+    function canvas_draw() {
+        // inch1
+        var width_crop = mode[btn_choose_mode].width;
+        var height_crop = mode[btn_choose_mode].height;
+        var each_width = mode[btn_choose_mode].each_width;
+        var each_height = mode[btn_choose_mode].each_height;
+
+        $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>`);
+        var ctx = document.getElementById('canvas').getContext('2d');
+        var crop = document.getElementsByTagName('canvas')[1];
+        ctx.setLineDash([3, 4]);
+        ctx.lineWidth = 2;
+        randomColor = ['#f36', '#f63', '#3f6', '#6f3', '#36f', '#63f'];
+        ctx.strokeStyle = randomColor[parseInt(Math.random() * 7)];
+        for (var i = 0; i < 5; i++) {
+            console.log(i * each_width, width_crop)
+            ctx.drawImage(crop, i * each_width, 0, width_crop, height_crop);
+            ctx.drawImage(crop, i * each_width, 1200 - height_crop, width_crop, height_crop);
+        }
+        for (var i = 0; i < 5; i++) {
+            // left line
+            // first row
+            ctx.beginPath();
+            ctx.moveTo(each_width * i - 2, 0);
+            ctx.lineTo(each_width * i - 2, height_crop + 2);
+            ctx.stroke();
+            // second row
+            ctx.beginPath();
+            ctx.moveTo(each_width * i - 2, 1200);
+            ctx.lineTo(each_width * i - 2, 1200 - height_crop - 2);
+            ctx.stroke();
+            // right line
+            // first row
+            ctx.beginPath();
+            ctx.moveTo(each_width * i + width_crop + 2, 0);
+            ctx.lineTo(each_width * i + width_crop + 2, height_crop + 2);
+            ctx.stroke();
+            // second row
+            ctx.beginPath();
+            ctx.moveTo(each_width * i + width_crop + 2, 1200);
+            ctx.lineTo(each_width * i + width_crop + 2, 1200 - height_crop - 2);
+            ctx.stroke();
+        }
+        // draw two horizontal line
+        ctx.beginPath();
+        ctx.moveTo(0, height_crop + 2);
+        ctx.lineTo(1800, height_crop + 2);
+        ctx.stroke()
+        ctx.beginPath();
+        ctx.moveTo(0, 1200 - height_crop - 2);
+        ctx.lineTo(1800, 1200 - height_crop - 2);
+        ctx.stroke();
+
+        ctx.setLineDash([6, 12]);
+        ctx.strokeStyle = "#EEE";
+        ctx.lineWidth = 6;
+        for (var i = -50; i < 100; i++) {
+            ctx.beginPath();
+            ctx.moveTo(i * 27.8, 1200 - height_crop - 6);
+            ctx.lineTo(1200 - height_crop + i * 27.8, height_crop + 6);
+            ctx.stroke();
+        }
+        // };
+
+        var logo = new Image();
+        logo.src = "https://s1031432.github.io/yctest/img/logo.png";
+        logo.setAttribute("crossOrigin", 'Anonymous');
+        logo.onload = () => {
+            if (btn_choose_mode != "usa") {
+                ctx.drawImage(logo, 840, 550);
+            }
+            // let img replace canvas
+            var saveHref = document.getElementById("save_href");
+            var save_img = document.getElementById("save_img");
+            var fileName = 'GoldenYears_' + getDateTime(new Date());
+            $("#save_href").attr('download', fileName);
+            var tempSrc = canvas.toDataURL("image/png");
+            saveHref.href = tempSrc;
+            save_img.src = tempSrc;
+            // $("canvas").hide();
+        }
+    }
+    function reload() {
+        var image = document.querySelector('#image');
+        var data = document.querySelector('#data');
+        var button = document.getElementById('button');
+        var result = document.getElementById('result');
+        var minCroppedWidth = mode[btn_choose_mode].width;
+        var minCroppedHeight = mode[btn_choose_mode].height;
+        var maxCroppedWidth = $("img").eq(2).css("width");
+        var maxCroppedHeight = $("img").eq(2).css("height");
+        var cropper = new Cropper(image, {
+            aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
+            viewMode: 3,
+
+            responsive:false,
+            data: {
+                width: (minCroppedWidth + maxCroppedWidth)/4,
+                height: (minCroppedHeight + maxCroppedHeight)/4,
+            },
+        });
+        console.log(cropper.getContainerData())
+        button.onclick = function () {
+            crop.innerHTML = '';
+            crop.appendChild(cropper.getCroppedCanvas());
+            canvas_draw();
+            $("#crop_div").remove();
+            $("#button").remove();
+        };
+    };
+    
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            file = input.files[0];
+        } else {
+            return;
+        }
+        if (file.type.indexOf("image") == 0) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                console.log(e);
+                if (e.total > 30000000) {
+                    alert("錯誤：檔案太大！");
+                }
+                else {
+                    $(`.yt-row-container`).remove();
+                    image.src = e.target.result;
+                    reload();
+                    window.scrollTo(0, 0);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+        else {
+            alert("上傳的不是圖檔！");
+        }
+    }
+
+    $("#upload_img").on("change", function () {
+        readFile(this);
+        $("label").after('<button id="button" class="btn btn-primary" type="button" style="margin:0 auto;display:none;">完成裁切</button>');
+        $("label").remove();
+        $("#button").css("display", "block");
+        $("#image").css("display", "block");
+    });
+
+    $("#ok").on("click", function () {
+        canvas_draw();
+    });
+</script>
