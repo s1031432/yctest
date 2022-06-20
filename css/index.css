@@ -205,3 +205,7 @@ max-width: 640px;
 img {
     max-width: 100%;
 }
+.button-row {
+    display:flex; 
+    justify-content: center;
+}
