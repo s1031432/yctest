@@ -150,7 +150,8 @@ function reload() {
         viewMode: 0,
         // dragMode: "none",
         dragMode: 'move',
-        cropBoxResizable:false,
+        // cropBoxResizable:false,
+        cropBoxResizable:true,
         responsive:false,
         data: {
             width: (minCroppedWidth + maxCroppedWidth)/4,
