@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>yc</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="./js/getDateTime.js"></script>
+
+        <link rel="stylesheet" href="./css/cropper.css">
+        <link rel="stylesheet" href="./css/index.css">
+        <link href="./css/bootstrap.min.css" rel='stylesheet'>
+    </head>
+    <body>
+        <div class="yt-row-container">
+            <div class="yt-row" tabindex="-1">
+                <!-- card2 -->
+                <div class="yt-card yt-card-width" id="inch2_body">
+                    <div class="title">
+                        <h3>點我產生２吋半身照</h3>
+                    </div>
+                    <div class="photo">
+                        <img src="./img/inch2_body.png" width="100%">
+                    </div>
+                    <div class="button">
+                        點我上傳照片
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="text-align:center;">
+            <div style="margin:10px; display:flex; justify-content: center;">
+                <button id="big" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">放大</button>
+                <button id="small" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">縮小</button>
+                <button id="rotate" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">旋轉</button>
+                <button id="button" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">完成裁切</button>
+            </div>
+            <div id="crop_div">
+                <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
+                <img id="image" src="" alt="Picture" style="display:none;" height="auto" width="100%">
+            </div>
+            <div id="yc">
+                <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
+            </div>
+            <div id="crop" style="display:none;">
+                You can't see me.
+            </div>
+        </div>
+    </body>
+</html>
+<script src="./js/cropper.js"></script>
+<script src="./js/yt_crop2.js"></script>
