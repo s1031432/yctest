@@ -26,20 +26,22 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="text-align:center;max-width:360px;">
+        <div class="container" style="text-align:center;">
             <div style="margin:10px; display:flex; justify-content: center;">
                 <button id="big" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">放大</button>
                 <button id="small" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">縮小</button>
                 <button id="rotate" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">旋轉</button>
                 <button id="button" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">完成裁切</button>
             </div>
-            <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
-            <img id="image" src="" alt="Picture" style="display:none;" height="auto" width="100%">
             <div id="yc">
                 <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
             </div>
             <div id="crop" style="display:none;">
                 You can't see me.
+            </div>
+            <div style="max-width:360px; margin:0 auto;">
+                <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
+                <img id="image" src="" alt="Picture" hidden>
             </div>
         </div>
     </body>
