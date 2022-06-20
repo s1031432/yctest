@@ -110,57 +110,7 @@ td {
 .yt-card-width {
     width:25%;
 }
-/* @media (max-width: 768px){
-    .yt-card-width {
-        width:50%;
-    }
-    .yt-row {
-        width:100%;
-        max-width: 1280px;
-        padding: 0 24px;
-        margin: 0 auto;
-        outline: 0;
-        box-sizing: border-box;
-        font-size: 0;
-    }
-    .yt-card > .photo {
-        margin-bottom:30px;
-        text-align:center;
-        vertical-align: top;
-        max-height:165px;
-    }
-}
-@media (max-width: 500px){
 
-    .yt-row {
-        width:1280px;
-        max-width: 1280px;
-        padding: 0 6px;
-        /* display: flex; */
-        /* justify-content: center; */
-        margin: 0 auto;
-        outline: 0;
-        box-sizing: border-box;
-        font-size: 0;
-        overflow:scroll;
-        overflow-Y:hidden;
-    }
-    .yt-card-width {
-        width:25%;
-        float: right;
-        border: 1px #ccc solid;
-        border-radius:4px;
-    }
-    .yt-card > .photo {
-        margin-bottom:30px;
-        text-align:center;
-        vertical-align: top;
-        max-height:165px;
-    }
-    .yt-card > .title {
-        padding-top: 0px;
-    }
-} */
 
 .yt-card > .title > h3 {
     margin-top:0px;
