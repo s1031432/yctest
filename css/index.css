@@ -80,6 +80,7 @@ td {
 }
 .yt-row {
     width:100%;
+    max-width: 1280px;
     padding: 0 48px;
     /* display: flex; */
     /* justify-content: center; */
@@ -195,7 +196,7 @@ td {
 }
 .container {
 margin: 20px auto;
-max-width: 640px;
+
 }
 
 img {
