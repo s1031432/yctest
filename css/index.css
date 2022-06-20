@@ -110,54 +110,6 @@ td {
 .yt-card-width {
     width:25%;
 }
-@media (max-width: 768px){
-    .yt-card-width {
-        width:100%;
-    }
-    .yt-row {
-        width:80%;
-        padding: 0 24px;
-        margin: 0 auto;
-        text-align:center;
-        outline: 0;
-        box-sizing: border-box;
-        font-size: 0;
-    }
-    .yt-card > .photo {
-        margin-bottom:30px;
-        text-align:center;
-        vertical-align: top;
-        max-height:165px;
-    }
-}
-@media (max-width: 500px){
-    .yt-row {
-        width:80%;
-        padding: 0 6px;
-        text-align:center;
-        margin: 0 auto;
-        outline: 0;
-        box-sizing: border-box;
-        font-size: 0;
-        overflow:scroll;
-        overflow-Y:hidden;
-    }
-    .yt-card-width {
-        width:100%;
-        float: right;
-        border: 1px #ccc solid;
-        border-radius:4px;
-    }
-    .yt-card > .photo {
-        margin-bottom:30px;
-        text-align:center;
-        vertical-align: top;
-        max-height:165px;
-    }
-    .yt-card > .title {
-        padding-top: 0px;
-    }
-} */
 
 .yt-card > .title > h3 {
     margin-top:0px;
@@ -188,8 +140,63 @@ td {
     justify-content : center;
     border-radius:4px;
     cursor: pointer;
-    margin-top: 10%;
+    margin-top: 30px;
 }
+@media (max-width: 768px){
+    .yt-card-width {
+        width:100%;
+    }
+    .yt-row {
+        width:80%;
+        padding: 0 24px;
+        margin: 0 auto;
+        text-align:center;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 0;
+    }
+    .yt-card > .photo {
+        margin-bottom:30px;
+        text-align:center;
+        vertical-align: top;
+        max-height:165px;
+    }
+    .yt-card > .button {
+        margin-top:36px;
+    }
+}
+@media (max-width: 500px){
+    .yt-row {
+        width:80%;
+        padding: 0 6px;
+        text-align:center;
+        margin: 0 auto;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 0;
+        overflow:scroll;
+        overflow-Y:hidden;
+    }
+    .yt-card-width {
+        width:100%;
+        float: right;
+        border: 1px #ccc solid;
+        border-radius:4px;
+    }
+    .yt-card > .photo {
+        margin-bottom:30px;
+        text-align:center;
+        vertical-align: top;
+        max-height:165px;
+    }
+    .yt-card > .title {
+        padding-top: 0px;
+    }
+    .yt-card > .button {
+        margin-top:36px;
+    }
+} */
+
 .yt-card > .button:hover {
     background-color: rgba(48, 48, 51, 0.9);
     transition: all .15s linear;
@@ -205,4 +212,6 @@ img {
 .button-row {
     display:flex; 
     justify-content: center;
+    max-width:400px;
+    margin: 0 auto;
 }
