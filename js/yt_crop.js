@@ -172,11 +172,11 @@ function reload() {
         cropper.rotate(90);
     }
     big.onclick = function(){
-        cropper.zoom(0.1);
+        cropper.zoom(0.05);
         
     }
     small.onclick = function(){
-        cropper.zoom(-0.1);
+        cropper.zoom(-0.05);
     }
 };
 

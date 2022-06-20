@@ -159,10 +159,11 @@ function reload() {
         cropBoxResizable: false,
         crop: function(e){
             console.log(cropper.getContainerData().width)
+            add_line();
         }
     });
     
-
+    
     button.onclick = function () {
         crop.innerHTML = '';
         crop.appendChild(cropper.getCroppedCanvas());
@@ -177,11 +178,11 @@ function reload() {
         cropper.rotate(90);
     }
     big.onclick = function(){
-        cropper.zoom(0.1);
+        cropper.zoom(0.05);
         
     }
     small.onclick = function(){
-        cropper.zoom(-0.1);
+        cropper.zoom(-0.05);
     }
 };
 

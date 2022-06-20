@@ -47,3 +47,23 @@
 </html>
 <script src="./js/cropper.js"></script>
 <script src="./js/yt_crop2.js"></script>
+<script>
+    function add_line(){
+        console.log($(".cropper-crop-box").css("transform"))
+        x = $(".cropper-crop-box").css("transform").split(", ")[4] || 0;
+        y = $(".cropper-crop-box").css("transform").split(", ")[5].split(")")[0] || 0;
+        h = document.getElementsByClassName('cropper-crop-box')[0].clientHeight;
+        w = document.getElementsByClassName('cropper-crop-box')[0].clientWidth;
+        console.log(x,y,h,w);
+        console.log(h*-0.71052631578)
+        console.log(h*-0.79887218045)
+        $(".face_line").remove();
+        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.75;"></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.75;"></div>`);
+    }
+</script>
+<!-- 
+0.71052631578 154
+0.79887218045 107
+-->
+<!-- 532 -->
