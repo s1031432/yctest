@@ -1237,8 +1237,8 @@
             addClass(cropper, CLASS_HIDDEN);
             removeClass(element, CLASS_HIDDEN);
             var containerData = {
-                width: (Math.max(container.offsetWidth, minWidth >= 0 ? minWidth : MIN_CONTAINER_WIDTH))*0.8,
-                height: (Math.max(container.offsetHeight, minHeight >= 0 ? minHeight : MIN_CONTAINER_HEIGHT))*0.8
+                width: (Math.max(container.offsetWidth, minWidth >= 0 ? minWidth : MIN_CONTAINER_WIDTH)),
+                height: (Math.max(container.offsetHeight, minHeight >= 0 ? minHeight : MIN_CONTAINER_HEIGHT))
             };
             this.containerData = containerData;
             setStyle(cropper, {
@@ -1386,8 +1386,8 @@
 
             if (transformed) {
                 var _getRotatedSizes = getRotatedSizes({
-                    width: imageData.naturalWidth * Math.abs(imageData.scaleX || 1)*0.8,
-                    height: imageData.naturalHeight * Math.abs(imageData.scaleY || 1)*0.8,
+                    width: imageData.naturalWidth * Math.abs(imageData.scaleX || 1),
+                    height: imageData.naturalHeight * Math.abs(imageData.scaleY || 1),
                     degree: imageData.rotate || 0
                 }),
                     naturalWidth = _getRotatedSizes.width,
@@ -1471,8 +1471,8 @@
             // };
 
             var cropBoxData = {
-                width: canvasData.width*0.8,
-                height: canvasData.height*0.8
+                width: canvasData.width,
+                height: canvasData.height
             };
 
             if (aspectRatio) {

@@ -137,33 +137,40 @@ function reload() {
     var image = document.querySelector('#image');
     var data = document.querySelector('#data');
     var button = document.getElementById('button');
-    var result = document.getElementById('result');
     var rotate = document.getElementById('rotate');
     var big = document.getElementById('big');
     var small = document.getElementById('small');
-    var minCroppedWidth = mode[btn_choose_mode].width;
-    var minCroppedHeight = mode[btn_choose_mode].height;
-    var maxCroppedWidth = $("img").eq(2).css("width");
-    var maxCroppedHeight = $("img").eq(2).css("height");
+    var result = document.getElementById('result');
+    var maxCroppedWidth = $(".cropper-container").eq(0).css("width");
+    var maxCroppedHeight = $(".cropper-container").eq(0).css("height");
+    var container = {};
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
         viewMode: 3,
-        dragMode: "none",
-        // cropBoxResizable:false,
-        responsive:false,
+        dragMode: 'move',
+        autoCropArea: 1,
+        restore: false,
+        modal: false,
         data: {
-            width: (minCroppedWidth + maxCroppedWidth)/4,
-            height: (minCroppedHeight + maxCroppedHeight)/4,
+            width: maxCroppedWidth,
+            // height: 350,
         },
+        // cropBoxMovable: false,
+        cropBoxResizable: false,
+        crop: function(e){
+            console.log(cropper.getContainerData().width)
+        }
     });
+    
+
     button.onclick = function () {
         crop.innerHTML = '';
         crop.appendChild(cropper.getCroppedCanvas());
         canvas_draw();
-        // $("#crop_div").remove();
+        $(".step2").hide();
         $(".cropper-container").remove();
-        $("#button").remove();
-        $(".step2").css("display", "none");
+        // $("#crop_div").remove();
+        // $("#button").remove();
     };
     rotate.onclick = function () {
         cropper.rotate(90);
@@ -215,11 +222,11 @@ $("#upload_img").on("change", function () {
     readFile(this);
     $("label").after('<button id="button" class="btn btn-primary" type="button" style="margin:0 auto;display:none;">完成裁切</button>');
     $("label").remove();
-    $("#button").css("display", "block");
     $(".step2").css("display", "block");
     $("#image").css("display", "block");
 });
 
 $("#ok").on("click", function () {
     canvas_draw();
+    
 });
