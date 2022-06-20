@@ -110,7 +110,7 @@ td {
 .yt-card-width {
     width:25%;
 }
-@media (max-width: 768px){
+/* @media (max-width: 768px){
     .yt-card-width {
         width:50%;
     }
@@ -160,7 +160,7 @@ td {
     .yt-card > .title {
         padding-top: 0px;
     }
-}
+} */
 
 .yt-card > .title > h3 {
     margin-top:0px;
