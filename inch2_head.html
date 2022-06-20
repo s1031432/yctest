@@ -13,7 +13,6 @@
     <body>
         <div class="yt-row-container">
             <div class="yt-row" tabindex="-1">
-                <!-- card1 -->
                 <div class="yt-card yt-card-width">
                     <div class="title">
                         <h3>點我產生２吋大頭照</h3>
@@ -32,63 +31,6 @@
                         點我上傳照片
                     </div>
                 </div>
-                <!-- card2 -->
-                <!-- <div class="yt-card yt-card-width" style="margin:0 auto;">
-                    <div class="title">
-                        <h3>點我產生２吋半身照</h3>
-                    </div>
-                    <div class="photo">
-                        <img src="https://s1031432.github.io/yctest/img/inch2_body.png" width="100%">
-                    </div>
-                    <div class="text">
-                        <table>
-                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
-                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
-                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印八張）</td></tr>
-                        </table>
-                    </div>
-                    <div id="inch2_body" class="button">
-                        點我上傳照片
-                    </div>
-                </div> -->
-                <!-- card3 -->
-                <!-- <div class="yt-card yt-card-width" style="margin:0 auto;">
-                    <div class="title">
-                        <h3>點我產生１吋半身照</h3>
-                    </div>
-                    <div class="photo">
-                        <img src="https://s1031432.github.io/yctest/img/inch1.png" width="100%">
-                    </div>
-                    <div class="text">
-                        <table>
-                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
-                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
-                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印十張）</td></tr>
-                        </table>
-                    </div>
-                    <div id="inch1" class="button">
-                        點我上傳照片
-                    </div>
-                </div> -->
-                <!-- card4 -->
-                <!-- <div class="yt-card yt-card-width">
-                    <div class="title">
-                        <h3>美國簽證產生器</h3>
-                    </div>
-                    <div class="photo">
-                        <img src="https://s1031432.github.io/yctest/img/usa.png" width="100%">
-                    </div>
-                    <div class="text" >
-                        <table>
-                            <tr><td valign="top">１、</td><td>上傳精修後的相片</td></tr>
-                            <tr><td valign="top">２、</td><td>裁切至合適大小</td></tr>
-                            <tr><td valign="top">３、</td><td>自動生成列印４＊６的尺寸圖檔（一次印六張）</td></tr>
-                        </table>
-                    </div>
-                    <div id="usa" class="button">
-                        上傳照片
-                    </div>
-                </div>  -->
             </div>
         </div>
         <div class="container" style="text-align:center;">
@@ -110,18 +52,9 @@
 </html>
 <script>
     // four card hover
-    $(".yt-card").css("transition", "all .15s linear");
-    $(".yt-card").on("mouseenter", (t) => {
-        $(".yt-card").css("opacity", 0.5);
-        $(this).css("opacity", 1);
-        t.currentTarget.style.opacity = 0.95;
-    });
-    $(".yt-card").on("mouseleave", () => {
-        $(".yt-card").css("opacity", 1);
-    });
-    $(".button").on("click", (e) => {
+    $(".yt-card").on("click", (e) => {
         $("#upload_img").click();
-        btn_choose_mode = e.target.id;
+        btn_choose_mode = "inch2_head";
         console.log(e.target.id);
     });
 </script>

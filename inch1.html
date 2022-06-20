@@ -11,7 +11,7 @@
     <body>
         <div class="yt-row-container">
             <div class="yt-row" tabindex="-1">
-                <div class="yt-card yt-card-width" style="margin:0 auto;">
+                <div class="yt-card yt-card-width">
                     <div class="title">
                         <h3>點我產生１吋半身照</h3>
                     </div>
@@ -43,18 +43,9 @@
 </html>
 <script>
     // four card hover
-    $(".yt-card").css("transition", "all .15s linear");
-    $(".yt-card").on("mouseenter", (t) => {
-        $(".yt-card").css("opacity", 0.5);
-        $(this).css("opacity", 1);
-        t.currentTarget.style.opacity = 0.95;
-    });
-    $(".yt-card").on("mouseleave", () => {
-        $(".yt-card").css("opacity", 1);
-    });
-    $(".button").on("click", (e) => {
+    $(".yt-card").on("click", (e) => {
         $("#upload_img").click();
-        btn_choose_mode = e.target.id;
+        btn_choose_mode = "inch1";
         console.log(e.target.id);
     });
 </script>
