@@ -139,6 +139,7 @@ function reload() {
     var button = document.getElementById('button');
     var reset = document.getElementById('reset');
     var rotate = document.getElementById('rotate');
+    var rotate_label = document.getElementById('rotate_label');
     var big = document.getElementById('big');
     var small = document.getElementById('small');
     var result = document.getElementById('result');
@@ -152,8 +153,11 @@ function reload() {
         viewMode: 0,
         dragMode: 'move',
         autoCropArea: 1,
+        zoomOnTouch: false,
+        cropBoxMovable: false,
         restore: false,
         modal: false,
+        background: false,
         data: {
             width: maxCroppedWidth,
             // height: 350,
@@ -182,6 +186,7 @@ function reload() {
     }
     rotate_bar.oninput = function(){
         cropper.rotateTo(this.value);
+        rotate_label.innerText = `旋轉(${this.value}°)`;
     }
     zoom_bar.oninput = function(){
         while(zv!=this.value){
