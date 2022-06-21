@@ -64,8 +64,10 @@
         w = document.getElementsByClassName('cropper-crop-box')[0].clientWidth;
 
         $(".face_line").remove();
-        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #ff28 solid; opacity:0.7;"></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #ff28 solid; opacity:0.7;"></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.7;"></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.7;"></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h-h*0.0+10}px;left:${x}px; width:${w}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${10}px #ff28 dashed; opacity:0.7;"></div>`);
     }
 </script>
 <!-- 
