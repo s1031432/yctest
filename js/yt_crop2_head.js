@@ -18,7 +18,7 @@ $(".yt-card").on("click", (e) => {
     else if(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id){
         targetId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
     }
-    console.log(targetId.length);
+    // console.log(targetId.length);
     btn_choose_mode = targetId;
     $("#upload_img").click();
 });
@@ -66,7 +66,7 @@ function canvas_draw() {
     randomColor = ['#f36', '#f63', '#3f6', '#6f3', '#36f', '#63f'];
     ctx.strokeStyle = randomColor[parseInt(Math.random() * 7)];
     for (var i = 0; i < 5; i++) {
-        console.log(i * each_width, width_crop)
+        // console.log(i * each_width, width_crop)
         ctx.drawImage(crop, i * each_width, 0, width_crop, height_crop);
         ctx.drawImage(crop, i * each_width, 1200 - height_crop, width_crop, height_crop);
     }
@@ -137,6 +137,7 @@ function reload() {
     var image = document.querySelector('#image');
     var data = document.querySelector('#data');
     var button = document.getElementById('button');
+    var reset = document.getElementById('reset');
     var rotate = document.getElementById('rotate');
     var big = document.getElementById('big');
     var small = document.getElementById('small');
@@ -161,7 +162,7 @@ function reload() {
         cropBoxResizable: false,
         crop: function(e){
             add_line();
-            console.log(e);
+            // console.log(e);
         }
     });
     button.onclick = function () {
@@ -174,6 +175,11 @@ function reload() {
         // $("#button").remove();
         $("#yc").append("（點擊圖片即可下載）");
     };
+    reset.onclick = function() {
+        cropper.reset();
+        rotate_bar.value = 0;
+        zoom_bar.value = 0;
+    }
     rotate_bar.oninput = function(){
         cropper.rotateTo(this.value);
     }
@@ -210,7 +216,6 @@ function readFile(input) {
     if (file.type.indexOf("image") == 0) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            console.log(e);
             if (e.total > 30000000) {
                 alert("錯誤：檔案太大！");
             }
