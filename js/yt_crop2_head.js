@@ -141,9 +141,11 @@ function reload() {
     var big = document.getElementById('big');
     var small = document.getElementById('small');
     var result = document.getElementById('result');
+    var rotate_bar = document.getElementById("rotate_bar");
+    var zoom_bar = document.getElementById("zoom_bar");
     var maxCroppedWidth = $(".cropper-container").eq(0).css("width");
     var maxCroppedHeight = $(".cropper-container").eq(0).css("height");
-    var container = {};
+    var zv=0;
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
         viewMode: 0,
@@ -159,10 +161,9 @@ function reload() {
         cropBoxResizable: false,
         crop: function(e){
             add_line();
+            console.log(e);
         }
     });
-    
-    
     button.onclick = function () {
         crop.innerHTML = '';
         crop.appendChild(cropper.getCroppedCanvas());
@@ -172,18 +173,32 @@ function reload() {
         // $("#crop_div").remove();
         // $("#button").remove();
         $("#yc").append("（點擊圖片即可下載）");
-
     };
-    rotate.onclick = function () {
-        cropper.rotate(90);
+    rotate_bar.oninput = function(){
+        cropper.rotateTo(this.value);
     }
-    big.onclick = function(){
-        cropper.zoom(0.05);
+    zoom_bar.oninput = function(){
+        while(zv!=this.value){
+            if(zv < this.value){
+                zv += 1;
+                cropper.zoom(0.01);
+            }
+            else{
+                zv -= 1;
+                cropper.zoom(-0.01);
+            }
+        }
+    }
+    // rotate.onclick = function () {
+    //     cropper.rotate(90);
+    // }
+    // big.onclick = function(){
+    //     cropper.zoom(0.05);
         
-    }
-    small.onclick = function(){
-        cropper.zoom(-0.05);
-    }
+    // }
+    // small.onclick = function(){
+    //     cropper.zoom(-0.05);
+    // }
 };
 
 function readFile(input) {
@@ -215,8 +230,8 @@ function readFile(input) {
 
 $("#upload_img").on("change", function () {
     readFile(this);
-    $("label").after('<button id="button" class="btn btn-primary" type="button" style="margin:0 auto;display:none;">完成裁切</button>');
-    $("label").remove();
+
+
     $(".step2").css("display", "block");
     $("#image").css("display", "block");
 });
