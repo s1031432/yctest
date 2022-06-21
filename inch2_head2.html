@@ -62,16 +62,11 @@
         y = $(".cropper-crop-box").css("transform").split(", ")[5].split(")")[0] || 0;
         h = document.getElementsByClassName('cropper-crop-box')[0].clientHeight;
         w = document.getElementsByClassName('cropper-crop-box')[0].clientWidth;
-
+        console.log(x,y,h,w)
         $(".face_line").remove();
-        // $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.7;"></div>`);
-        // $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.7;"></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${0-h-h*0.0+10}px;left:${x}px; width:${w}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' z-index="-1" style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${10}px #ff28 dashed; opacity:0.7;"></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.7;"></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.7;"></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${Number(x)+w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">頭頂</h1></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${Number(x)+w*0.2}px; width:${w*0.6}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">下巴</h1></div>`);
     }
 </script>
-<!-- 
-0.71052631578 154
-0.79887218045 107
--->
-<!-- 532 -->
