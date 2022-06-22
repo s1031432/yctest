@@ -30,14 +30,14 @@
                 <!-- <button id="big" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">放大</button>
                 <button id="small" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">縮小</button>
                 <button id="rotate" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">旋轉</button> -->
-                <label id="rotate_label" class="step2" style="display:none;">旋轉(0°)</label>
-                    <input class="step2" id="rotate_bar" class="step2" type="range" min="-360" max="360" value="0" style="display:none;"></input>
-                <label class="step2" style="display:none;">縮放</label>
-                    <input id="zoom_bar" class="step2" type="range" min="-100" max="100" value="0" step="1" style="display:none;">
                 <div style="display:flex; justify-content:center;margin-top:10px;">
                     <button id="button" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">完成裁切</button>
-                    <button id="reset" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">重設</button>
                 </div>
+                <!-- <label id="rotate_label" class="step2" style="display:none;">旋轉(0°)</label>
+                    <input class="step2" id="rotate_bar" class="step2" type="range" min="-360" max="360" value="0" style="display:none;"></input> -->
+                <label class="step2" style="display:none;">縮放</label>
+                    <input id="zoom_bar" class="step2" type="range" min="-100" max="100" value="0" step="1" style="display:none;">
+                
             </div>
             <div id="yc" style="max-width:400px; margin:0 auto;">
 
@@ -46,7 +46,7 @@
             <div id="crop" style="display:none;">
                 You can't see me.
             </div>
-            <div style="max-width:400px; margin:0 auto;">
+            <div style="max-width:400px; margin:auto; margin-top:40px;">
                 <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
                 <img id="image" src="" alt="Picture" hidden>
             </div>
@@ -60,13 +60,15 @@
 
         x = $(".cropper-crop-box").css("transform").split(", ")[4] || 0;
         y = $(".cropper-crop-box").css("transform").split(", ")[5].split(")")[0] || 0;
-        h = document.getElementsByClassName('cropper-crop-box')[0].clientHeight;
-        w = document.getElementsByClassName('cropper-crop-box')[0].clientWidth;
-        console.log(x,y,h,w)
+        h = document.getElementsByClassName('cropper-face')[0].clientHeight;
+        w = document.getElementsByClassName('cropper-face')[0].clientWidth;
+
         $(".face_line").remove();
         // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.7;"></div>`);
         // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.7;"></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${Number(x)+w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">頭頂</h1></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${Number(x)+w*0.3}px; width:${w*0.4}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">下巴</h1></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${Number(x)+w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">頭頂</h1></div>`);
+        // $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${Number(x)+w*0.3}px; width:${w*0.4}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">下巴</h1></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="margin:0;">頭頂</h1></div>`);
+        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${w*0.3}px; width:${w*0.4}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="margin:0;">下巴</h1></div>`);
     }
 </script>

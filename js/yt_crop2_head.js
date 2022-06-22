@@ -158,6 +158,7 @@ function reload() {
         restore: false,
         modal: false,
         background: false,
+        zoomOnWheel: false,
         data: {
             width: maxCroppedWidth,
             // height: 350,
@@ -179,15 +180,15 @@ function reload() {
         // $("#button").remove();
         $("#yc").append("（點擊圖片即可下載）");
     };
-    reset.onclick = function() {
-        cropper.reset();
-        rotate_bar.value = 0;
-        zoom_bar.value = 0;
-    }
-    rotate_bar.oninput = function(){
-        cropper.rotateTo(this.value);
-        rotate_label.innerText = `旋轉(${this.value}°)`;
-    }
+    // reset.onclick = function() {
+    //     cropper.reset();
+    //     rotate_bar.value = 0;
+    //     zoom_bar.value = 0;
+    // }
+    // rotate_bar.oninput = function(){
+    //     cropper.rotateTo(this.value);
+    //     rotate_label.innerText = `旋轉(${this.value}°)`;
+    // }
     zoom_bar.oninput = function(){
         while(zv!=this.value){
             if(zv < this.value){

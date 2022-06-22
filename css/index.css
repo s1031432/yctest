@@ -219,7 +219,7 @@ img {
 input[type=range] {
     height: 25px;
     -webkit-appearance: none;
-    margin: 10px 0;
+    margin-bottom: 10px 0;
     width: 100%;
 }
 
