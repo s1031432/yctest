@@ -195,7 +195,7 @@ td {
     .yt-card > .button {
         margin-top:36px;
     }
-} */
+}
 
 .yt-card > .button:hover {
     background-color: rgba(48, 48, 51, 0.9);
@@ -353,4 +353,24 @@ input[type=range]:hover::-webkit-slider-thumb {
 }
 .ant-slider-dragging{
     z-index:1;
+}
+
+.mobile {
+    max-width:400px; 
+    margin:auto; 
+    margin-top:24px;
+}
+@media (max-width: 768px){
+    .mobile {
+        max-height:70%;
+        margin:auto; 
+        margin-top:12px;
+    }
+}
+@media (max-width: 500px){
+    .mobile {
+        max-height:70%;
+        margin:auto; 
+        margin-top:12px;
+    }
 }

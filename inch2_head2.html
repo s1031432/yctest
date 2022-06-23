@@ -3,11 +3,11 @@
         <title>yc</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <script src="./js/getDateTime.js"></script>
+        <script src="https://s1031432.github.io/yctest/js/getDateTime.js"></script>
 
-        <link rel="stylesheet" href="./css/cropper.css">
+        <link rel="stylesheet" href="https://s1031432.github.io/yctest/css/cropper.css">
         <link rel="stylesheet" href="./css/index.css">
-        <link href="./css/bootstrap.min.css" rel='stylesheet'>
+        <link href="https://s1031432.github.io/yctest/css/bootstrap.min.css" rel='stylesheet'>
     </head>
     <body>
         <div class="yt-row-container">
@@ -17,7 +17,7 @@
                         <h3>點我產生２吋大頭照</h3>
                     </div>
                     <div class="photo">
-                        <img src="./img/inch2_head.png" width="100%">
+                        <img src="https://s1031432.github.io/yctest/img/inch2_head.png" width="100%">
                     </div>
                     <div class="button">
                         點我上傳照片
@@ -30,32 +30,36 @@
                 <!-- <button id="big" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">放大</button>
                 <button id="small" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">縮小</button>
                 <button id="rotate" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">旋轉</button> -->
-                <div style="display:flex; justify-content:center;margin-top:10px;">
-                    <button id="button" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">完成裁切</button>
-                </div>
+                
                 <!-- <label id="rotate_label" class="step2" style="display:none;">旋轉(0°)</label>
                     <input class="step2" id="rotate_bar" class="step2" type="range" min="-360" max="360" value="0" style="display:none;"></input> -->
                 <label class="step2" style="display:none;">縮放</label>
                     <input id="zoom_bar" class="step2" type="range" min="-100" max="100" value="0" step="1" style="display:none;">
+                <div style="display:flex; justify-content:center;margin-top:10px;">
+                    <button id="button" class="btn btn-primary step2" type="button" style="margin:0 auto; display:none;">完成裁切</button>
+                </div>
                 
             </div>
-            <div id="yc" style="max-width:400px; margin:0 auto;">
+            <div id="yc" style="max-width:500px; margin:0 auto;">
+            <!-- <div id="yc" style="max-height:75%; margin:0 auto;"> -->
 
                 <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
             </div>
             <div id="crop" style="display:none;">
                 You can't see me.
             </div>
-            <div style="max-width:400px; margin:auto; margin-top:40px;">
+            <div class="mobile">
+            <!-- <div style="max-height:75%; margin:auto; margin-top:40px;"> -->
                 <input id="upload_img" style="display:none;" type="file" accept="image/*" hidden>
                 <img id="image" src="" alt="Picture" hidden>
             </div>
         </div>
     </body>
 </html>
-<script src="./js/cropper.js"></script>
-<script src="./js/yt_crop2_head.js"></script>
+<script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
+<script src="https://s1031432.github.io/yctest/js/yt_crop2_head.js"></script>
 <script>
+
     function add_line(){
 
         x = $(".cropper-crop-box").css("transform").split(", ")[4] || 0;

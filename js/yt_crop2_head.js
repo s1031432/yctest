@@ -1,3 +1,5 @@
+
+
 $(".yt-card").on("click", (e) => {
     var targetId = "";
     if(e.target.id.length){
@@ -150,7 +152,7 @@ function reload() {
     var zv=0;
     var cropper = new Cropper(image, {
         aspectRatio: mode[btn_choose_mode].width / mode[btn_choose_mode].height,
-        viewMode: 0,
+        viewMode: 1,
         dragMode: 'move',
         autoCropArea: 1,
         zoomOnTouch: false,
