@@ -132,15 +132,38 @@ function canvas_draw() {
         var tempSrc = canvas.toDataURL("image/png");
         saveHref.href = tempSrc;
         save_img.src = tempSrc;
+        console.log(save_img.src)
         // $("canvas").hide();
+        $("#yc").append(`<p>（點擊圖片即可下載）</p>`);
+        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開始</p>`);
         let blobObj = dataURItoBlob(save_img.src);
         let blobUrl = URL.createObjectURL(blobObj);
         save_img.src = blobUrl;
         saveHref.href = blobUrl;
+
+        // window.navigator.msSaveBlob(blobObj, "TEST");
     }
 }
+
+
+function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), 
+        n = bstr.length, 
+        u8arr = new Uint8Array(n);
+        
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    
+    return new File([u8arr], filename, {type:mime});
+}
+
+
 // Convert base64 to blob ( for android mobile image download )
 function dataURItoBlob(dataURI) {
+    console.log(dataURI);
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
     var byteString = atob(dataURI.split(',')[1]);
     var arrayBuffer = new ArrayBuffer(byteString.length);
@@ -149,6 +172,13 @@ function dataURItoBlob(dataURI) {
         intArray[i] = byteString.charCodeAt(i);
     }
     return new Blob([intArray], {type: mimeString});
+}
+function downloadFile(fileName, base64) {
+    console.log(base64)
+    var blob = dataURItoBlob(base64);
+    //支持IE11
+    console.log("ASD")
+    window.navigator.msSaveBlob(blob, fileName);
 }
 function reload() {
     var image = document.querySelector('#image');
@@ -193,7 +223,7 @@ function reload() {
         $(".cropper-container").remove();
         // $("#crop_div").remove();
         // $("#button").remove();
-        $("#yc").append("（點擊圖片即可下載）");
+        // $("#yc").append("<button onclick='download_android();'>（點擊圖片即可下載）</button>");
     };
     // reset.onclick = function() {
     //     cropper.reset();
@@ -228,6 +258,9 @@ function reload() {
     // }
 };
 
+function download_android(base64){
+    window.location.href = 'data:application/octet-stream;base64,' + base64;
+}
 function readFile(input) {
     if (input.files && input.files[0]) {
         file = input.files[0];
