@@ -135,7 +135,7 @@ function canvas_draw() {
         console.log(save_img.src)
         // $("canvas").hide();
         $("#yc").append(`<p>（點擊圖片即可下載）</p>`);
-        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開始</p>`);
+        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
         let blobObj = dataURItoBlob(save_img.src);
         let blobUrl = URL.createObjectURL(blobObj);
         save_img.src = blobUrl;
