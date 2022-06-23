@@ -139,12 +139,12 @@ function canvas_draw() {
         saveHref.href = blobUrl;
     }
 }
+// Convert base64 to blob ( for android mobile image download )
 function dataURItoBlob(dataURI) {
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; // mime类型
-    var byteString = atob(dataURI.split(',')[1]); //base64 解码
-    var arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
-    var intArray = new Uint8Array(arrayBuffer); //创建视图
-
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var byteString = atob(dataURI.split(',')[1]);
+    var arrayBuffer = new ArrayBuffer(byteString.length);
+    var intArray = new Uint8Array(arrayBuffer);
     for (var i = 0; i < byteString.length; i++) {
         intArray[i] = byteString.charCodeAt(i);
     }
@@ -154,13 +154,13 @@ function reload() {
     var image = document.querySelector('#image');
     var data = document.querySelector('#data');
     var button = document.getElementById('button');
-    var reset = document.getElementById('reset');
-    var rotate = document.getElementById('rotate');
-    var rotate_label = document.getElementById('rotate_label');
-    var big = document.getElementById('big');
-    var small = document.getElementById('small');
-    var result = document.getElementById('result');
-    var rotate_bar = document.getElementById("rotate_bar");
+    // var reset = document.getElementById('reset');
+    // var rotate = document.getElementById('rotate');
+    // var rotate_label = document.getElementById('rotate_label');
+    // var big = document.getElementById('big');
+    // var small = document.getElementById('small');
+    // var result = document.getElementById('result');
+    // var rotate_bar = document.getElementById("rotate_bar");
     var zoom_bar = document.getElementById("zoom_bar");
     var maxCroppedWidth = $(".cropper-container").eq(0).css("width");
     var maxCroppedHeight = $(".cropper-container").eq(0).css("height");
@@ -176,14 +176,12 @@ function reload() {
         modal: false,
         background: false,
         zoomOnWheel: false,
-        data: {
-            width: maxCroppedWidth,
-            // height: 350,
-        },
+
         // cropBoxMovable: false,
         cropBoxResizable: false,
         crop: function(e){
             add_line();
+            $(".cropper-drag-box").css("pointer-events", "none");
             // console.log(e);
         }
     });
@@ -247,6 +245,7 @@ function readFile(input) {
                 image.src = e.target.result;
                 reload();
                 window.scrollTo(0, 0);
+                
             }
         };
         reader.readAsDataURL(file);
