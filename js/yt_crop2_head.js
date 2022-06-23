@@ -179,7 +179,7 @@ function reload() {
 
         // cropBoxMovable: false,
         cropBoxResizable: false,
-        crop: function(e){
+        ready: function(e){
             add_line();
             $(".cropper-drag-box").css("pointer-events", "none");
             // console.log(e);
