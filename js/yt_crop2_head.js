@@ -133,7 +133,22 @@ function canvas_draw() {
         saveHref.href = tempSrc;
         save_img.src = tempSrc;
         // $("canvas").hide();
+        let blobObj = dataURItoBlob(save_img.src);
+        let blobUrl = URL.createObjectURL(blobObj);
+        save_img.src = blobUrl;
+        saveHref.href = blobUrl;
     }
+}
+function dataURItoBlob(dataURI) {
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]; // mime类型
+    var byteString = atob(dataURI.split(',')[1]); //base64 解码
+    var arrayBuffer = new ArrayBuffer(byteString.length); //创建缓冲数组
+    var intArray = new Uint8Array(arrayBuffer); //创建视图
+
+    for (var i = 0; i < byteString.length; i++) {
+        intArray[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([intArray], {type: mimeString});
 }
 function reload() {
     var image = document.querySelector('#image');

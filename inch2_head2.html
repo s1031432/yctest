@@ -56,10 +56,10 @@
         </div>
     </body>
 </html>
-<script src="https://s1031432.github.io/yctest/js/cropper.js"></script>
-<script src="https://s1031432.github.io/yctest/js/yt_crop2_head.js"></script>
+<script src="./js/cropper.js"></script>
+<script src="./js/yt_crop2_head.js"></script>
 <script>
-
+    $("cropper-move").css("pointer-events", "none");
     function add_line(){
 
         x = $(".cropper-crop-box").css("transform").split(", ")[4] || 0;
