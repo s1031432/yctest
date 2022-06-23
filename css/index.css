@@ -362,14 +362,14 @@ input[type=range]:hover::-webkit-slider-thumb {
 }
 @media (max-width: 768px){
     .mobile {
-        max-height:70%;
+        max-height:55%;
         margin:auto; 
         margin-top:12px;
     }
 }
 @media (max-width: 500px){
     .mobile {
-        max-height:70%;
+        max-height:55%;
         margin:auto; 
         margin-top:12px;
     }
