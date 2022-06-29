@@ -128,20 +128,22 @@ function canvas_draw() {
         var saveHref = document.getElementById("save_href");
         var save_img = document.getElementById("save_img");
         var fileName = 'GoldenYears_' + getDateTime(new Date());
-        $("#save_href").attr('download', fileName);
+        
         var tempSrc = canvas.toDataURL("image/png");
         saveHref.href = tempSrc;
         save_img.src = tempSrc;
         console.log(save_img.src)
         // $("canvas").hide();
-        $("#yc").append(`<p>（點擊圖片即可下載）</p>`);
-        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
+
         let blobObj = dataURItoBlob(save_img.src);
         let blobUrl = URL.createObjectURL(blobObj);
         save_img.src = blobUrl;
         saveHref.href = blobUrl;
 
-        // window.navigator.msSaveBlob(blobObj, "TEST");
+        $("#save_href").attr('download', fileName);
+        $("#yc").append(`<p>（點擊圖片即可下載）</p>`);
+        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
+
     }
 }
 
@@ -210,7 +212,8 @@ function reload() {
         // cropBoxMovable: false,
         cropBoxResizable: false,
         ready: function(e){
-            add_line();
+            if(btn_choose_mode == "inch2_head")
+                add_line();
             $(".cropper-drag-box").css("pointer-events", "none");
             // console.log(e);
         }
@@ -290,13 +293,10 @@ function readFile(input) {
 
 $("#upload_img").on("change", function () {
     readFile(this);
-
-
     $(".step2").css("display", "block");
     $("#image").css("display", "block");
 });
 
 $("#ok").on("click", function () {
     canvas_draw();
-    
 });
