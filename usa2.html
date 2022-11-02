@@ -35,8 +35,8 @@
             </div>
             <div id="yc" style="max-width:500px; margin:0 auto;">
             <!-- <div id="yc" style="max-height:75%; margin:0 auto;"> -->
-
-                <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas>
+                
+                <canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>
             </div>
             <div id="crop" style="display:none;">
                 You can't see me.
@@ -51,20 +51,3 @@
 </html>
 <script src="./js/cropper.js"></script>
 <script src="./js/yt_crop2_head.js"></script>
-<!-- <script>
-    
-    function add_line(){
-        x = $(".cropper-crop-box").css("transform").split(", ")[4] || 0;
-        y = $(".cropper-crop-box").css("transform").split(", ")[5].split(")")[0] || 0;
-        h = document.getElementsByClassName('cropper-face')[0].clientHeight;
-        w = document.getElementsByClassName('cropper-face')[0].clientWidth;
-
-        $(".face_line").remove();
-        // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${0-h}px;left:${x}px; width:${w}px; border-bottom:${h*0.04}px #f228 solid; opacity:0.7;"></div>`);
-        // $(".cropper-crop-box").append(`<div class='face_line' style="pointer-events:none;margin-top:${h-h*0.04-h*0.18}px;left:${x}px; width:${w}px; border-top:${h*0.18}px #f228 solid; opacity:0.7;"></div>`);
-        // $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${Number(x)+w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">頭頂</h1></div>`);
-        // $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${Number(x)+w*0.3}px; width:${w*0.4}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="background:green;margin:0;">下巴</h1></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${0-50+20}px; left:${w*0.2}px; width:${w*0.6}px; border-bottom:${10}px #ff28 dashed; opacity:0.7;"><h1 style="margin:0;">頭頂</h1></div>`);
-        $(".cropper-crop-box").append(`<div class='face_line' style="z-index:99999; position:absolute; height:50px; text-align:center; pointer-events:none; top:${h-h*0.18}px; left:${w*0.3}px; width:${w*0.4}px; border-top:${10}px #ff28 dashed; opacity:0.7;"><h1 style="margin:0;">下巴</h1></div>`);
-    }
-</script> -->

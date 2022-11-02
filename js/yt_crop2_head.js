@@ -60,9 +60,34 @@ function canvas_draw() {
     var each_width = mode[btn_choose_mode].each_width;
     var each_height = mode[btn_choose_mode].each_height;
 
-    $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a>`);
+    $("#yc").html(`<canvas id="canvas" width="1800" height="1200" style="display:none;"></canvas><a id="save_href"><img id="save_img"></a><canvas id="canvas2" width="1800" height="1200" style="display:none;"></canvas><a id="save_href2"><img id="save_img2"></a>`);
     var ctx = document.getElementById('canvas').getContext('2d');
-    var crop = document.getElementsByTagName('canvas')[1];
+    var crop = document.getElementsByTagName('canvas')[2];
+
+    // single image
+    $("#canvas2").attr("width", `${width_crop}px`);
+    $("#canvas2").attr("height", `${height_crop}px`);
+    var ctx2 = document.getElementById('canvas2').getContext('2d');
+    ctx2.drawImage(crop, 0, 0, width_crop, height_crop);
+    var saveHref2 = document.getElementById("save_href2");
+    var save_img2 = document.getElementById("save_img2");
+    var fileName2 = 'GoldenYears_' + getDateTime(new Date());
+    
+    var tempSrc2 = canvas2.toDataURL("image/png");
+    saveHref2.href = tempSrc2;
+    save_img2.src = tempSrc2;
+    // console.log(save_img.src)
+    // $("canvas").hide();
+
+    let blobObj2 = dataURItoBlob(save_img2.src);
+    let blobUrl2 = URL.createObjectURL(blobObj2);
+    save_img2.src = blobUrl2;
+    saveHref2.href = blobUrl2;
+    $("#save_href2").attr('download', fileName2);
+    $("#save_href2").after(`<p>（點擊圖片即可下載）</p>`);
+    $("#save_href2").after(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
+    // single image
+
     ctx.setLineDash([3, 4]);
     ctx.lineWidth = 2;
     randomColor = ['#f36', '#f63', '#3f6', '#6f3', '#36f', '#63f'];
@@ -72,6 +97,7 @@ function canvas_draw() {
         ctx.drawImage(crop, i * each_width, 0, width_crop, height_crop);
         ctx.drawImage(crop, i * each_width, 1200 - height_crop, width_crop, height_crop);
     }
+    
     for (var i = 0; i < 5; i++) {
         // left line
         // first row
@@ -132,7 +158,7 @@ function canvas_draw() {
         var tempSrc = canvas.toDataURL("image/png");
         saveHref.href = tempSrc;
         save_img.src = tempSrc;
-        console.log(save_img.src)
+        // console.log(save_img.src)
         // $("canvas").hide();
 
         let blobObj = dataURItoBlob(save_img.src);
@@ -141,9 +167,8 @@ function canvas_draw() {
         saveHref.href = blobUrl;
 
         $("#save_href").attr('download', fileName);
-        $("#yc").append(`<p>（點擊圖片即可下載）</p>`);
-        $("#yc").append(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
-
+        $("#save_href").after(`<p>（點擊圖片即可下載）</p>`);
+        $("#save_href").after(`<p>手機若無法下載時請嘗試改用Chrome瀏覽器開啟</p>`);
     }
 }
 
@@ -165,7 +190,7 @@ function dataURLtoFile(dataurl, filename) {
 
 // Convert base64 to blob ( for android mobile image download )
 function dataURItoBlob(dataURI) {
-    console.log(dataURI);
+    // console.log(dataURI);
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
     var byteString = atob(dataURI.split(',')[1]);
     var arrayBuffer = new ArrayBuffer(byteString.length);
@@ -176,7 +201,7 @@ function dataURItoBlob(dataURI) {
     return new Blob([intArray], {type: mimeString});
 }
 function downloadFile(fileName, base64) {
-    console.log(base64)
+    // console.log(base64)
     var blob = dataURItoBlob(base64);
     //支持IE11
     console.log("ASD")
@@ -224,6 +249,7 @@ function reload() {
         canvas_draw();
         $(".step2").hide();
         $(".cropper-container").remove();
+        
         // $("#crop_div").remove();
         // $("#button").remove();
         // $("#yc").append("<button onclick='download_android();'>（點擊圖片即可下載）</button>");
@@ -297,6 +323,3 @@ $("#upload_img").on("change", function () {
     $("#image").css("display", "block");
 });
 
-$("#ok").on("click", function () {
-    canvas_draw();
-});
