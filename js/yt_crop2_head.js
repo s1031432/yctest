@@ -65,10 +65,11 @@ function canvas_draw() {
     var crop = document.getElementsByTagName('canvas')[2];
 
     // single image
-    $("#canvas2").attr("width", `${width_crop}px`);
-    $("#canvas2").attr("height", `${height_crop}px`);
+    $("#canvas2").attr("width", `${width_crop*5}px`);
+    $("#canvas2").attr("height", `${height_crop*5}px`);
     var ctx2 = document.getElementById('canvas2').getContext('2d');
-    ctx2.drawImage(crop, 0, 0, width_crop, height_crop);
+    ctx2.drawImage(crop, 0, 0, width_crop*5, height_crop*5);
+
     var saveHref2 = document.getElementById("save_href2");
     var save_img2 = document.getElementById("save_img2");
     var fileName2 = 'GoldenYears_' + getDateTime(new Date());
