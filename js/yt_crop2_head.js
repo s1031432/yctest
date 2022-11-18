@@ -74,7 +74,7 @@ function canvas_draw() {
     var save_img2 = document.getElementById("save_img2");
     var fileName2 = 'GoldenYears_' + getDateTime(new Date());
     
-    var tempSrc2 = canvas2.toDataURL("image/png");
+    var tempSrc2 = canvas2.toDataURL("image/jpeg");
     saveHref2.href = tempSrc2;
     save_img2.src = tempSrc2;
     // console.log(save_img.src)
@@ -156,7 +156,7 @@ function canvas_draw() {
         var save_img = document.getElementById("save_img");
         var fileName = 'GoldenYears_' + getDateTime(new Date());
         
-        var tempSrc = canvas.toDataURL("image/png");
+        var tempSrc = canvas.toDataURL("image/jpeg");
         saveHref.href = tempSrc;
         save_img.src = tempSrc;
         // console.log(save_img.src)
