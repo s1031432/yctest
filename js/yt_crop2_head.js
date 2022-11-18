@@ -133,15 +133,15 @@ function canvas_draw() {
     ctx.lineTo(1800, 1200 - height_crop - 2);
     ctx.stroke();
 
-    ctx.setLineDash([6, 12]);
-    ctx.strokeStyle = "#EEE";
-    ctx.lineWidth = 6;
-    for (var i = -50; i < 100; i++) {
-        ctx.beginPath();
-        ctx.moveTo(i * 27.8, 1200 - height_crop - 6);
-        ctx.lineTo(1200 - height_crop + i * 27.8, height_crop + 6);
-        ctx.stroke();
-    }
+    // ctx.setLineDash([6, 12]);
+    // ctx.strokeStyle = "#EEE";
+    // ctx.lineWidth = 6;
+    // for (var i = -50; i < 100; i++) {
+    //     ctx.beginPath();
+    //     ctx.moveTo(i * 27.8, 1200 - height_crop - 6);
+    //     ctx.lineTo(1200 - height_crop + i * 27.8, height_crop + 6);
+    //     ctx.stroke();
+    // }
     // };
 
     var logo = new Image();
